@@ -1,6 +1,9 @@
 # Import Libraries
 import math
 import plotly.graph_objects as pg
+import numpy as np
+
+# Plot of a 2D-gaussian landscape
 
 def gaussiannet(nn_list, plot_m, plot_s):
     # import plotly.graph_objects as gob
@@ -82,3 +85,26 @@ def gaussiannet(nn_list, plot_m, plot_s):
                 "aspectratio": {"x": 1, "y": 1, "z": 0.5}
             })
     fig.show()
+    
+    
+# Convert matrix to 2D-net input    
+    
+def mattonet(nn_mat):
+    nn_ml =[]
+    ml = len(nn_mat)
+    fl = len(nn_mat[0][0])
+    for i in range(0,ml):
+        for j in range(0,ml):
+            for k in range(0, fl):
+                a = []
+                if not (nn_mat[i][j][k][0]==0 and nn_mat[i][j][k][1]==0):
+                    # print(i, j, k, nn_mat[i][j][k])
+                    a.append(i)
+                    a.append(j)
+                    a.append(nn_mat[i][j][k][0])
+                    a.append(nn_mat[i][j][k][1])
+                    # print(a)
+                    at = tuple(a)
+                    # print(at)
+                    nn_ml.append(at)
+    return(nn_ml)                
