@@ -25,3 +25,12 @@ def SmilesInsert(smi_in):
             db_chem = psycopg2.connect(host = "localhost", dbname="Chemistry", user="postgres", password="postgres")
             cur = db_chem.cursor()
             sql = 'INSERT INTO public."Structures"("SMILES") VALUES(%s);'
+            
+# insert new Morgan Fingerprints - expect fpn as dict, smi as string
+            
+def FPInsertMorgan(fpn, smi):
+           
+    db_chem = psycopg2.connect(host = "localhost", dbname="Chemistry", user="postgres", password="postgres")
+    cur = db_chem.cursor()
+    sql = 'INSERT INTO public."Structures"("SMILES") VALUES(%s);'
+    #print(sql)
