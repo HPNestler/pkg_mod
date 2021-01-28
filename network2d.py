@@ -107,4 +107,27 @@ def mattonet(nn_mat):
                     at = tuple(a)
                     # print(at)
                     nn_ml.append(at)
-    return(nn_ml)                
+    return(nn_ml)
+
+# Match the probe to a network position
+
+def net_match(ms, fp, fp_list, net, probe):
+    for i in range(0, ms):
+        for j in range(0,ms):
+            v = 0
+            for k in range(0, fp):
+                # print(i,j,k)
+                p = probe[k]
+                n = net[i][j][k][0]
+                s = net[i][j][k][1]
+                if s == 0:
+                    s = fp_list[k][1]
+                # d = math.sqrt((p-n)**2)
+                d = 1/(2*math.pi*pow(s,2)) * math.exp(-(pow(p-n,2))/(2*pow(s,2)))
+                v = v + d
+                # if p == n:
+                #    print(i,j,p,n,s,d,v)
+             
+            fit[i][j] = v
+    
+    return fit
