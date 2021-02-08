@@ -142,11 +142,12 @@ def net_learn(ms, fp, ind, pr, net_mol, net):
     ma = int((ms-1)/2)
     l = len(net_mol[ind])
     for i in range(0, fp):        
-        n = net[x][y][i][0]
-        a = ((l-1)*n+pr[i])/l
+        #n = net[x][y][i][0]
+        #a = ((l-1)*n+pr[i])/l
         # print('Net FP : ',i, n, pr[i], l, a)
         # print("Adjust")
-        net[x][y][i][0] = a
+        #net[x][y][i][0] = a
+        a = net[x][y][i][0]
         for j in range(-ma, ma):
             for k in range(-ma,ma):
                 x1 = (x+j+1 % ms)-1
