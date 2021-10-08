@@ -63,3 +63,17 @@ def StructPropInsert(sp):
         db_chem = psycopg2.connect(host = "192.168.86.31", dbname="Chemistry", user="postgres", password="postgres")
         cur = db_chem.cursor() 
         sql = 'INSERT INTO public.structure_properties (property_type_id, structure_id, property_value) VALUES(%s, %s, %s);'
+        
+
+# find structure id for SMIlES
+
+def SmilesID(smi):
+
+    db_chem = psycopg2.connect(host = "192.168.86.31", dbname="Chemistry", user="postgres", password="postgres")
+    cur = db_chem.cursor()
+    sql = 'select structure_id, smiles from public.structures where molecule =\' '+smi+' \'::mol;'
+    #print(sql)
+    cur.execute(sql)
+    mollist = cur.fetchall()
+    return mollist[0][0]
+ 
